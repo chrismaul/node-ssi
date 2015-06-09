@@ -205,6 +205,9 @@ SSI.prototype = {
                 seg = matches[0];
                 isVirtual = RegExp.$1 == 'virtual';
                 basePath = (isVirtual && options.dirname)? options.dirname : options.baseDir;
+                if(isVirtual && RegExp.$3[0] === '/') {
+                  basePath = options.baseDir;
+                }
                 tpath = path.join(basePath, RegExp.$3);
                 fs.readFile(tpath, {
                         encoding: options.encoding
